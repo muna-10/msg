@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Anonymous Email</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        // Initialize EmailJS once when the page loads
+        window.onload = function() {
+            emailjs.init("8f7k69plsPLGarLDr");  // Ensure this is your actual public key
+        }
+
+        // Function to send email
+       function sendMail(){
+    var params = {
+        message: document.querySelector("#message").value,
+        to_email: "YOUR_EMAIL_ADDRESS"  // Add your recipient email address here
+    };
+
+    var serviceID = "service_uuneiqk";
+    var templateID = "template_fp5e37j";
+
+    emailjs.send(serviceID, templateID, params)
+    .then(function(res) {
+        alert("Mail sent successfully!");
+    })
+    .catch(function(error) {
+        alert("Failed to send mail: " + JSON.stringify(error));
+        console.error("EmailJS error:", error);
+    });
+}
+    </script>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div>
+        <h1>Send Anonymous Message</h1>
+    Send a message:<br>
+    <textarea id="message"></textarea><br>
+    <button onclick="sendMail();">Send</button>
+    </div>
+</body>
+</html>
